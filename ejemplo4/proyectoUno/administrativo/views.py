@@ -134,3 +134,10 @@ def crear_numero_telefonico_estudiante(request, id):
     diccionario = {'formulario': formulario, 'estudiante': estudiante}
 
     return render(request, 'crearNumeroTelefonicoEstudiante.html', diccionario)
+
+def listar_numero_telefonicos(request):
+    """
+    """
+    numero_telefonico = NumeroTelefonico.objects.all()
+    informacion_template = {'numeros_telefonicos': numero_telefonico}
+    return render(request, 'listarNumerosTelefonicos.html', informacion_template)    
