@@ -6,7 +6,7 @@
 <form action="" method="post" id="contact">
   {% csrf_token %}
   {{formulario.as_p}}
-  <p><input type='submit' value='Agregar'/></p>
+  <button type="submit" class="contact-button">Agregar</button>
 </form>
 
 {% endblock %}
