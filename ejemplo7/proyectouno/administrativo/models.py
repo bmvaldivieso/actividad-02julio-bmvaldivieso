@@ -26,7 +26,10 @@ class Estudiante(models.Model):
 
     def obtener_matriculas(self):
         return self.lasmatriculas.all()
-        
+    
+    def total_pagado(self):
+        return self.lasmatriculas.aggregate(
+            total=models.Sum('costo'))['total'] or 0
 
 class Modulo(models.Model):
     """
@@ -46,6 +49,10 @@ class Modulo(models.Model):
 
     def __str__(self):
         return "Módulo: %s" % (self.nombre)
+ 
+    def total_matriculas(self):
+        return self.lasmatriculas.aggregate(
+            total=models.Sum('costo'))['total'] or 0
 
 
 class Matricula(models.Model):
@@ -58,7 +65,10 @@ class Matricula(models.Model):
     comentario = models.CharField(max_length=200)
 
     # Agregar costo
+    costo = models.DecimalField(max_digits=7, decimal_places=2, default=0)
 
     def __str__(self):
         return "Matricula: Estudiante(%s) - Modulo(%s)" % \
                 (self.estudiante, self.modulo.nombre)
+
+
