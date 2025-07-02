@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.shortcuts import render
 
 # importar las clases de models.py
-from administrativo.models import Matricula, Estudiante
+from administrativo.models import Matricula, Estudiante, Modulo
 from administrativo.forms import MatriculaForm, MatriculaEditForm, ModuloForm, EstudianteForm
 
 
@@ -89,12 +89,12 @@ def detalle_estudiante(request, id):
 # crear módulos
 # crear estudiantes
 
-def lista_modulos(request):
+def listar_modulos(request):
     modulos = Modulo.objects.all()
     return render(request, 'listar_modulos.html',
                   {'modulos': modulos})
 
-def lista_estudiantes(request):
+def listar_estudiantes(request):
     estudiantes = Estudiante.objects.all()
     return render(request, 'listar_estudiantes.html',
                   {'estudiantes': estudiantes})
@@ -108,7 +108,7 @@ def crear_modulo(request):
         print(formulario.errors)  
         if formulario.is_valid():
             formulario.save()     
-            return redirect(lista_modulos)
+            return redirect(listar_modulos)
     else:
         formulario = ModuloForm()
 
@@ -126,11 +126,9 @@ def crear_estudiante(request):
         print(formulario.errors)
         if formulario.is_valid():
             formulario.save()
-            return redirect(lista_estudiantes)
+            return redirect(listar_estudiantes)
     else:
         formulario = EstudianteForm()
 
     diccionario = {'formulario': formulario}
     return render(request, 'crear_estudiante.html', diccionario)
-
-

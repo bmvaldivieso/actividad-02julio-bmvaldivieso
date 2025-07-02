@@ -39,4 +39,4 @@ class EstudianteForm(ModelForm):
 class ModuloForm(ModelForm):
     class Meta:
         model = Modulo
-        fields = ['nombre', 'estudiantes', 'cedula']
+        fields = ['nombre', 'estudiantes']

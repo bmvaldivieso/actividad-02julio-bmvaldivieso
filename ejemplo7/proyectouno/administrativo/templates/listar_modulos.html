@@ -1,0 +1,24 @@
+<h2>Listado de Módulos</h2>
+
+<table border="1px">
+  <tr>
+    <th>Nombre del módulo</th>
+    <th>Valor de todas las matriculas del módulo&nbsp;($)</th>
+  </tr>
+
+  {% for m in modulos %}
+  <tr>
+    <td>{{ m.get_nombre_display|default:m.nombre }}</td>
+    <td>{{ m.total_matriculas }}</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="2">No existen módulos registrados.</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<p>
+  <a href="{% url 'crear_modulo' %}">Crear nuevo módulo</a> |
+  <a href="{% url 'index' %}">Inicio</a>
+</p>

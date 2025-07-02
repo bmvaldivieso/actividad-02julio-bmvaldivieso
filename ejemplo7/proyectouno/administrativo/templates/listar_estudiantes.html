@@ -1,0 +1,34 @@
+<h2>Listado de Estudiantes</h2>
+
+<table border="1px">
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Cédula</th>
+    <th>Edad</th>
+    <th>Tipo Estudiante</th>
+    <th>Costo de Matriculas&nbsp;($)</th>
+    <th>Acciones</th>
+  </tr>
+
+  {% for e in estudiantes %}
+  <tr>
+    <td>{{ e.nombre }}</td>
+    <td>{{ e.apellido }}</td>
+    <td>{{ e.cedula }}</td>
+    <td>{{ e.edad }}</td>
+    <td>{{ e.get_tipo_estudiante_display }}</td>
+    <td>{{ e.total_pagado }}</td>
+    <td><a href="{% url 'detalle_estudiante' e.id %}">Ver detalle</a></td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="7">No existen estudiantes registrados.</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<p>
+  <a href="{% url 'crear_estudiante' %}">Crear nuevo estudiante</a> |
+  <a href="{% url 'index' %}">Inicio</a>
+</p>

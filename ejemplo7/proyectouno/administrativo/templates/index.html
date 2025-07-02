@@ -1,35 +1,36 @@
-<h1>{{mititulo}}</h1>
-<hr>
-<h3>Número de Matriculas {{ numero_matriculas }}</h3>
-<hr>
-[<a href="{% url 'crear_matricula' %}">nuevo</a>]
-<hr>
-<table border="1px">
+{% extends "master.html" %}
+
+{% block title %}{{ mititulo }}{% endblock %}
+
+{% block content %}
+<h2>{{ mititulo }}</h2>
+<p>Número de Matrículas: {{ numero_matriculas }}</p>
+<p>[<a href="{% url 'crear_matricula' %}">nuevo</a>]</p>
+
+<table border="1">
   <tr>
-    <th><b>Estudiante</b></th>
-    <th><b>Módulo</b></th>
-    <th><b>Comentario</b></th>
-    <th><b>Opciones</b></th>
+    <th>Estudiante</th>
+    <th>Módulo</th>
+    <th>Comentario</th>
+    <th>Opciones</th>
   </tr>
+
   {% for e in matriculas %}
   <tr>
     <td>
-      {{e.estudiante.nombre}} <br>
-      {{e.estudiante.get_tipo_estudiante_display }}
+      {{ e.estudiante.nombre }}<br>
+      {{ e.estudiante.get_tipo_estudiante_display }}
       [<a href="{% url 'detalle_estudiante' e.estudiante.id %}">+</a>]
     </td>
-    <td>
-      {{e.modulo.nombre}}
-    </td>
-    <td>
-      {{e.comentario}}
-    </td>
+    <td>{{ e.modulo.nombre }}</td>
+    <td>{{ e.comentario }}</td>
     <td>
       [<a href="{% url 'detalle_matricula' e.id %}">ver</a>]
       [<a href="{% url 'editar_matricula' e.id %}">editar</a>]
     </td>
   </tr>
+  {% empty %}
+  <tr><td colspan="4">No hay matrículas registradas.</td></tr>
   {% endfor %}
-
 </table>
-<hr>
+{% endblock %}

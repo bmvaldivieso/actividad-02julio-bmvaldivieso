@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <!-- Encabezado simple sin estilos -->
+    <header>
+        <h1><a href="{% url 'index' %}">MiAPP</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'crear_estudiante' %}">Agregar Estudiante</a></li>
+                <li><a href="{% url 'crear_modulo' %}">Agregar Módulo</a></li>
+                <li><a href="{% url 'crear_matricula' %}">Agregar Matrícula</a></li>
+                <li><a href="{% url 'modulos' %}">Listar Modulos</a></li>
+                <li><a href="{% url 'estudiantes' %}">Listar Estudiantes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido específico de cada página -->
+    {% block content %}{% endblock %}
+
+    <hr>
+
+    <footer>
+        <small>Loja-Ecuador — {% now "j F Y H:i" %}</small>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
