@@ -1,7 +1,7 @@
 {% extends "master.html" %}
 
 {% block title %}
-  Listado de Estudiantes
+Listado de Estudiantes
 {% endblock %}
 
 {% block content %}
@@ -29,9 +29,10 @@
     <td>
       <ul>
         {% for t in e.numeros_telefonicos.all %}
-          <li>
-            <span>{{t.telefono}} - <span>{{t.tipo}}</span> - <a href="{% url 'editar_numero_telefonico' t.id %}" title="editar"><i class="fa fa-edit"></i></a> </span>
-          </li>
+        <li>
+          <span>{{t.telefono}} - <span>{{t.tipo}}</span> - <a href="{% url 'editar_numero_telefonico' t.id %}"
+              title="editar"><i class="fa fa-edit"></i></a> </span>
+        </li>
         {% endfor %}
       </ul>
       <div class="main-blue-button">
@@ -41,11 +42,12 @@
     </td>
     <td>
       <div class="main-blue-button-2">
-      <a href="{% url 'obtener_estudiante' e.id %}">ver</a> <br>
-      <a href="{% url 'editar_estudiante' e.id %}">editar</a> <br>
-      <a href="{% url 'eliminar_estudiante' e.id %}"
-      onclick="return confirm('¿Está seguro de la eliminación?')" >
-      eliminar</a>
+        <a href="{% url 'obtener_estudiante' e.id %}">ver</a> <br>
+        <a href="{% url 'editar_estudiante' e.id %}">
+          <i class="fa fa-edit"></i>
+        </a> <br>
+        <a href="{% url 'eliminar_estudiante' e.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">
+          eliminar</a>
 
       </div>
     </td>
@@ -55,7 +57,7 @@
 </table>
 
 <script type="text/javascript">
-  $(document).ready( function () {
+  $(document).ready(function () {
     $('#tabla_datos').DataTable();
   });
 </script>

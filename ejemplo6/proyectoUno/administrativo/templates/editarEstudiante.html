@@ -3,10 +3,10 @@
 {% block content %}
 <h2>Editar Estudiante</h3>
 
-<form action="" method="post">
+<form action="" method="post" id="contact">
   {% csrf_token %}
   {{formulario.as_p}}
-  <p><input type='submit' value='Actualizar'/></p>
+  <button type="submit" class="contact-button">Actualizar</button>
 </form>
 
 {% endblock %}
