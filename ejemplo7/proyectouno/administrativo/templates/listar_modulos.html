@@ -1,3 +1,6 @@
+{% extends "master.html" %}
+
+{% block content %}
 <h2>Listado de Módulos</h2>
 
 <table border="1px">
@@ -22,3 +25,4 @@
   <a href="{% url 'crear_modulo' %}">Crear nuevo módulo</a> |
   <a href="{% url 'index' %}">Inicio</a>
 </p>
+{% endblock %}

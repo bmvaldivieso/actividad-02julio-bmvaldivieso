@@ -1,4 +1,6 @@
-<h2>Listado de Estudiantes</h2>
+{% extends "master.html" %}
+
+{% block content %}<h2>Listado de Estudiantes</h2>
 
 <table border="1px">
   <tr>
@@ -27,6 +29,8 @@
   </tr>
   {% endfor %}
 </table>
+
+{% endblock %}
 
 <p>
   <a href="{% url 'crear_estudiante' %}">Crear nuevo estudiante</a> |
