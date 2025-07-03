@@ -1,34 +1,72 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap & CSS de la plantilla -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+
+  {% block extra_css %}{% endblock %}
+  <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <!-- Encabezado simple sin estilos -->
-    <header>
-        <h1><a href="{% url 'index' %}">MiAPP</a></h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'crear_estudiante' %}">Agregar Estudiante</a></li>
-                <li><a href="{% url 'crear_modulo' %}">Agregar Módulo</a></li>
-                <li><a href="{% url 'crear_matricula' %}">Agregar Matrícula</a></li>
-                <li><a href="{% url 'modulos' %}">Listar Modulos</a></li>
-                <li><a href="{% url 'estudiantes' %}">Listar Estudiantes</a></li>
+
+<header class="header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg">
+
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <i class="bi bi-box navbar-icon me-2"></i>
+            <span>MiAPP</span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav" aria-controls="navbarNav"
+                  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-lg-5">
+              <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'crear_estudiante' %}">Agregar Estudiante</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'crear_modulo' %}">Agregar Módulo</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'crear_matricula' %}">Agregar Matrícula</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'modulos' %}">Listar Módulos</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'estudiantes' %}">Listar Estudiantes</a></li>
             </ul>
+
+
+            <div class="d-lg-flex align-items-center ms-auto mt-3 mt-lg-0">
+              <a href="#" class="navbar-icon"><i class="bi bi-person-fill"></i></a>
+            </div>
+          </div>
+
         </nav>
-    </header>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <!-- Contenido específico de cada página -->
-    {% block content %}{% endblock %}
+{% block hero %}{% endblock %}
 
-    <hr>
+<div class="container my-5">
+  {% block content %}{% endblock %}
+</div>
 
-    <footer>
-        <small>Loja-Ecuador — {% now "j F Y H:i" %}</small>
-    </footer>
+<hr>
 
-    {% block extra_js %}{% endblock %}
+<footer class="text-center py-4">
+  <p>Loja-Ecuador — UTPL</p>
+</footer>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>

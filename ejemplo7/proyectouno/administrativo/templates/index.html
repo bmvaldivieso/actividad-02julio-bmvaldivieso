@@ -1,36 +1,65 @@
 {% extends "master.html" %}
-
 {% block title %}{{ mititulo }}{% endblock %}
 
 {% block content %}
-<h2>{{ mititulo }}</h2>
-<p>Número de Matrículas: {{ numero_matriculas }}</p>
-<p>[<a href="{% url 'crear_matricula' %}">nuevo</a>]</p>
+<section class="section-padding">
+  <div class="container">
 
-<table border="1">
-  <tr>
-    <th>Estudiante</th>
-    <th>Módulo</th>
-    <th>Comentario</th>
-    <th>Opciones</th>
-  </tr>
+    <h4 class="mb-3">{{ mititulo }}</h4>
+    <p class="mb-4">Número de Matrículas: <strong>{{ numero_matriculas }}</strong></p>
 
-  {% for e in matriculas %}
-  <tr>
-    <td>
-      {{ e.estudiante.nombre }}<br>
-      {{ e.estudiante.get_tipo_estudiante_display }}
-      [<a href="{% url 'detalle_estudiante' e.estudiante.id %}">+</a>]
-    </td>
-    <td>{{ e.modulo.nombre }}</td>
-    <td>{{ e.comentario }}</td>
-    <td>
-      [<a href="{% url 'detalle_matricula' e.id %}">ver</a>]
-      [<a href="{% url 'editar_matricula' e.id %}">editar</a>]
-    </td>
-  </tr>
-  {% empty %}
-  <tr><td colspan="4">No hay matrículas registradas.</td></tr>
-  {% endfor %}
-</table>
+    <!-- Botón “Nueva matrícula” -->
+    <a href="{% url 'crear_matricula' %}" class="btn btn-primary btn-sm mb-3">
+      <i class="bi bi-plus-circle me-1"></i> Nueva matrícula
+    </a>
+
+    <!-- Tabla con estilo Topic Listing -->
+    <div class="table-responsive shadow-sm rounded">
+      <table class="table table-striped align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Estudiante</th>
+            <th>Módulo</th>
+            <th>Comentario</th>
+            <th class="text-center">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for e in matriculas %}
+          <tr>
+            <td>
+              {{ e.estudiante.nombre }}<br>
+              <small class="text-muted">{{ e.estudiante.get_tipo_estudiante_display }}</small>
+
+              <!-- icono info para detalle del estudiante -->
+              <a href="{% url 'detalle_estudiante' e.estudiante.id %}"
+                 class="ms-1 text-decoration-none" title="Detalle estudiante">
+                <i class="bi bi-info-circle"></i>
+              </a>
+            </td>
+
+            <td>{{ e.modulo.nombre }}</td>
+            <td>{{ e.comentario|default:"—" }}</td>
+
+            <td class="text-center">
+              <a href="{% url 'detalle_matricula' e.id %}"
+                 class="btn btn-outline-secondary btn-sm me-1" title="Ver">
+                <i class="bi bi-eye"></i>
+              </a>
+
+              <a href="{% url 'editar_matricula' e.id %}"
+                 class="btn btn-outline-primary btn-sm" title="Editar">
+                <i class="bi bi-pencil"></i>
+              </a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" class="text-center">No hay matrículas registradas.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
 {% endblock %}

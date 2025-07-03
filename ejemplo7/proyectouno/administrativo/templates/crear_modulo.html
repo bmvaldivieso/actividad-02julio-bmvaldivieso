@@ -1,15 +1,29 @@
 {% extends "master.html" %}
+{% block title %}Crear Módulo{% endblock %}
 
 {% block content %}
+<section class="section-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5 mx-auto">
 
-<h2>Crear Modulo</h2>
+        <h4 class="mb-4 text-center">Crear Módulo</h4>
 
-<form action="" method="post">
-  {% csrf_token %}
-  {{formulario.as_p}}
-  <p><input type='submit' value='Agregar'/></p>
-</form>
+        <form method="post" class="custom-form contact-form" role="form">
+          {% csrf_token %}
+          {{ formulario.as_p }}
 
+          <div class="text-center mt-4">
+            <button type="submit" class="form-control w-auto px-5">Agregar</button>
+          </div>
+        </form>
+
+        <div class="text-center mt-3">
+          <a href="{% url 'index' %}" class="btn btn-primary btn-sm me-2">Inicio</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
-
-[<a href="{% url 'index' %}">inicio</a>]

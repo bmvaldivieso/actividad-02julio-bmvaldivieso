@@ -1,38 +1,42 @@
 {% extends "master.html" %}
+{% block title %}Estudiantes{% endblock %}
 
-{% block content %}<h2>Listado de Estudiantes</h2>
+{% block content %}
+<section class="section-padding">
+  <div class="container">
 
-<table border="1px">
-  <tr>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Cédula</th>
-    <th>Edad</th>
-    <th>Tipo Estudiante</th>
-    <th>Costo de Matriculas&nbsp;($)</th>
-    <th>Acciones</th>
-  </tr>
+    <h2 class="mb-4">Listado de Estudiantes</h2>
 
-  {% for e in estudiantes %}
-  <tr>
-    <td>{{ e.nombre }}</td>
-    <td>{{ e.apellido }}</td>
-    <td>{{ e.cedula }}</td>
-    <td>{{ e.edad }}</td>
-    <td>{{ e.get_tipo_estudiante_display }}</td>
-    <td>{{ e.total_pagado }}</td>
-    <td><a href="{% url 'detalle_estudiante' e.id %}">Ver detalle</a></td>
-  </tr>
-  {% empty %}
-  <tr>
-    <td colspan="7">No existen estudiantes registrados.</td>
-  </tr>
-  {% endfor %}
-</table>
+    <div class="table-responsive shadow-sm rounded">
+      <table class="table table-striped align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Nombre</th><th>Apellido</th><th>Cédula</th>
+            <th>Edad</th><th>Tipo Estudiante</th>
+            <th>Costo Matrículas&nbsp;($)</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in estudiantes %}
+            <tr>
+              <td>{{ e.nombre }}</td>
+              <td>{{ e.apellido }}</td>
+              <td>{{ e.cedula }}</td>
+              <td>{{ e.edad }}</td>
+              <td>{{ e.get_tipo_estudiante_display }}</td>
+              <td>{{ e.total_pagado }}</td>
+              <td><a href="{% url 'detalle_estudiante' e.id %}" class="btn btn-outline-primary btn-sm">Detalle</a></td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="7" class="text-center">No existen estudiantes registrados.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
+    <a href="{% url 'crear_estudiante' %}" class="btn btn-primary btn-sm me-2">Crear nuevo estudiante</a>
+    <a href="{% url 'index' %}" class="btn btn-primary btn-sm me-2">Inicio</a>
+
+  </div>
+</section>
 {% endblock %}
-
-<p>
-  <a href="{% url 'crear_estudiante' %}">Crear nuevo estudiante</a> |
-  <a href="{% url 'index' %}">Inicio</a>
-</p>

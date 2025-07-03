@@ -1,38 +1,30 @@
 {% extends "master.html" %}
+{% block title %}Detalle Estudiante{% endblock %}
 
 {% block content %}
-<h2>Detalle estudiante</h2>
+<div class="container section-padding">
+  <h2 class="mb-4">{{ e.nombre }} {{ e.apellido }}</h2>
 
-<b>Nombre:</b> {{e.nombre}}
-</br>
-<b>Apellido:</b> {{e.apellido}}
-</br>
-<b>Edad:</b> {{e.edad}}
-</br>
-<b>Cédula:</b> {{e.cedula}}
-</br>
-<hr>
-<table border="1px">
-  <tr>
-    <th><b>Módulo</b></th>
-    <th><b>comentario</b></th>
+  <ul class="list-group mb-5">
+    <li class="list-group-item"><strong>Cédula:</strong> {{ e.cedula }}</li>
+    <li class="list-group-item"><strong>Edad:</strong> {{ e.edad }}</li>
+    <li class="list-group-item"><strong>Tipo:</strong> {{ e.get_tipo_estudiante_display }}</li>
+  </ul>
 
-  </tr>
-  {% for m in e.obtener_matriculas %}
-  <tr>
-    <td>
-      {{m.modulo.nombre}}
-    </td>
-    <td>
-      {{m.comentario}}
-    </td>
-
-  </tr>
-  {% endfor %}
-
-</table>
-
-</br>
+  <h4 class="mb-3">Matrículas</h4>
+  <table class="table table-bordered align-middle">
+    <thead class="table-light">
+      <tr><th>Módulo</th><th>Comentario</th><th>Costo ($)</th></tr>
+    </thead>
+    <tbody>
+      {% for m in e.obtener_matriculas %}
+      <tr>
+        <td>{{ m.modulo.nombre }}</td>
+        <td>{{ m.comentario }}</td>
+        <td>{{ m.costo }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
-
-[<a href="{% url 'index' %}">inicio</a>]
