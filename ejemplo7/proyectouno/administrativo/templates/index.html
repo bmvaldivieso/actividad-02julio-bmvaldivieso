@@ -8,12 +8,10 @@
     <h4 class="mb-3">{{ mititulo }}</h4>
     <p class="mb-4">Número de Matrículas: <strong>{{ numero_matriculas }}</strong></p>
 
-    <!-- Botón “Nueva matrícula” -->
     <a href="{% url 'crear_matricula' %}" class="btn btn-primary btn-sm mb-3">
       <i class="bi bi-plus-circle me-1"></i> Nueva matrícula
     </a>
 
-    <!-- Tabla con estilo Topic Listing -->
     <div class="table-responsive shadow-sm rounded">
       <table class="table table-striped align-middle">
         <thead class="table-light">
@@ -31,7 +29,6 @@
               {{ e.estudiante.nombre }}<br>
               <small class="text-muted">{{ e.estudiante.get_tipo_estudiante_display }}</small>
 
-              <!-- icono info para detalle del estudiante -->
               <a href="{% url 'detalle_estudiante' e.estudiante.id %}"
                  class="ms-1 text-decoration-none" title="Detalle estudiante">
                 <i class="bi bi-info-circle"></i>
