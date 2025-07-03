@@ -29,7 +29,7 @@
 
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'index' %}">
-          <i class="bi bi-back"></i>
+          <i class="bi-back"></i>
           <span>Matriculas</span>
         </a>
 
@@ -42,19 +42,21 @@
         <!-- Menú -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-lg-5 me-lg-auto">
-            <li class="nav-item"><a href="{% url 'index' %}" class="nav-link click-scroll">Home</a></li>
-            <li class="nav-item"><a href="{% url 'crear_matricula' %}" class="nav-link click-scroll">Crear Matrícula</a>
+            <li class="nav-item menu-item"><a href="{% url 'index' %}" class="nav-link click-scroll">Home</a>
             </li>
-            <li class="nav-item"><a href="{% url 'crear_modulo' %}" class="nav-link click-scroll">Crear Módulo</a></li>
-            <li class="nav-item"><a href="{% url 'crear_estudiante' %}" class="nav-link click-scroll">Crear
+            <li class="nav-item menu-item"><a href="{% url 'crear_matricula' %}" class="nav-link click-scroll">Crear
+                Matrícula</a></li>
+            <li class="nav-item menu-item"><a href="{% url 'crear_modulo' %}" class="nav-link click-scroll">Crear
+                Módulo</a></li>
+            <li class="nav-item menu-item"><a href="{% url 'crear_estudiante' %}" class="nav-link click-scroll">Crear
                 Estudiante</a></li>
-            <li class="nav-item"><a href="{% url 'estudiantes' %}" class="nav-link click-scroll">Listar Estudiantes</a>
-            </li>
-            <li class="nav-item"><a href="{% url 'modulos' %}" class="nav-link click-scroll">Listar Módulos</a></li>
+            <li class="nav-item menu-item"><a href="{% url 'estudiantes' %}" class="nav-link click-scroll">Listar
+                Estudiantes</a></li>
+            <li class="nav-item menu-item"><a href="{% url 'modulos' %}" class="nav-link click-scroll">Listar
+                Módulos</a></li>
           </ul>
-          <!-- Si algún día necesitas un icono de perfil, descomenta: -->
-          <!-- <a href="#top" class="navbar-icon d-none d-lg-block bi-person smoothscroll"></a> -->
         </div>
+
 
       </div>
     </nav>
